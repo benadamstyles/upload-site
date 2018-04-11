@@ -1,6 +1,6 @@
 {
   "name": "upload-site",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Upload your site via FTP, with incremental uploading based on directory hashes",
   "main": "lib/index.js",
   "files": [
