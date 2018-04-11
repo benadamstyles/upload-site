@@ -3,11 +3,12 @@
   "version": "0.0.2",
   "description": "Upload your site via FTP, with incremental uploading based on directory hashes",
   "main": "lib/index.js",
-  "module": "lib/index.esm.js",
-  "esnext": "lib/index.esm.js",
   "files": [
     "lib"
   ],
+  "bin": {
+    "upload-site": "lib/index.js"
+  },
   "engines": {
     "node": ">= 9"
   },
