@@ -37,5 +37,10 @@ yarn run upload-site
 
 ### CLI options
 
-- `--debug`: extra logging
-- `--dry`: perform all actions **except** `ftp put` – useful for testing ftp login, etc
+#### `--debug`
+
+extra logging
+
+#### `--dry`
+
+perform all actions **except** `ftp put` – useful for testing ftp login, etc
