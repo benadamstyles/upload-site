@@ -19,9 +19,9 @@ const loglevel = process.argv[2] === '--debug' ? 'debug' : 'info'
 const log = new Log({level: loglevel, color: true, date: false})
 
 type FTP = {
-  auth: (string, string) => Promise<void>,
-  put: (string, string) => Promise<void>,
-  raw: (string, ...args: $ReadOnlyArray<mixed>) => Promise<void>,
+  authAsync: (string, string) => Promise<void>,
+  putAsync: (string, string) => Promise<void>,
+  rawAsync: (string, ...args: $ReadOnlyArray<mixed>) => Promise<void>,
   useList: boolean,
 }
 
@@ -84,7 +84,7 @@ const ftpPut = async (
   file: string
 ) => {
   try {
-    await ftp.put(p.normalize(p.join(localRoot, path, file)), file)
+    await ftp.putAsync(p.normalize(p.join(localRoot, path, file)), file)
     log.debug('Uploaded file: ' + file + ' to: ' + path)
   } catch (e) {
     log.error('Cannot upload file: ' + file + ' --> ' + e)
@@ -95,10 +95,10 @@ const ftpPut = async (
 const ftpCwd = async (ftp: FTP, path: string) => {
   try {
     log.debug(`ftp cwd ${path}`)
-    await ftp.raw('cwd', path)
+    await ftp.rawAsync('cwd', path)
   } catch (e) {
     try {
-      await ftp.raw('mkd', path)
+      await ftp.rawAsync('mkd', path)
       log.debug('New remote folder created ' + path)
       return ftpCwd(ftp, path)
     } catch (e) {
@@ -151,7 +151,7 @@ void (async () => {
       p.join(projectRoot, '.ftppass')
     ))[authKey]
 
-    await ftp.auth(username, password)
+    await ftp.authAsync(username, password)
 
     const data = dirParse(localRoot, localRoot)
     const progress = getProgress([].concat(...data.values()).length)
@@ -169,7 +169,7 @@ void (async () => {
     }
 
     await hashStore.close()
-    await ftp.raw('quit')
+    await ftp.rawAsync('quit')
 
     log.info('FTP upload completed')
   } catch (e) {
