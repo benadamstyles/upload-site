@@ -15,8 +15,7 @@ import hashOrig from 'hash-files'
 import getConfig, {type LocalRoot, type RemoteRoot} from './get-config'
 import Store from './json-store'
 
-// const loglevel = 'debug'
-const loglevel = 'info'
+const loglevel = process.argv[2] === '--debug' ? 'debug' : 'info'
 const log = new Log({level: loglevel, color: true, date: false})
 
 type FTP = {
