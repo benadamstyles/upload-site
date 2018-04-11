@@ -1,0 +1,58 @@
+{
+  "name": "upload-site",
+  "version": "0.0.1",
+  "description": "Upload your site via FTP, with incremental uploading based on directory hashes",
+  "main": "lib/index.js",
+  "module": "lib/index.esm.js",
+  "esnext": "lib/index.esm.js",
+  "files": [
+    "lib"
+  ],
+  "engines": {
+    "node": ">= 9"
+  },
+  "scripts": {
+    "build": "flow-remove-types --pretty index.js > lib/index.js && flow-remove-types --pretty json-store.js > lib/json-store.js && flow-remove-types --pretty get-config.js > lib/get-config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leeds-eBooks/upload-site.git"
+  },
+  "keywords": [
+    "upload",
+    "deploy",
+    "website",
+    "ftp"
+  ],
+  "author": "benstyles",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Leeds-eBooks/upload-site/issues"
+  },
+  "homepage": "https://github.com/Leeds-eBooks/upload-site#readme",
+  "devDependencies": {
+    "esm": "^3.0.17",
+    "flow-bin": "^0.69",
+    "flow-remove-types": "^1.2.3",
+    "flow-typed": "^2.2.3"
+  },
+  "dependencies": {
+    "hash-files": "^1.1.1",
+    "jsftp": "^2.1.2",
+    "jsonfile": "^4.0.0",
+    "log-color-optionaldate": "^1.1.1",
+    "maybes": "^0.2.3",
+    "pkg-conf": "^2.1.0",
+    "progress": "^2.0.0",
+    "util-promisifyall": "^1.0.3"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "bracketSpacing": false,
+    "semi": false,
+    "parser": "flow",
+    "jsxBracketSameLine": true
+  }
+}
