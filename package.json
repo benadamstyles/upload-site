@@ -17,6 +17,7 @@
   },
   "scripts": {
     "build": "flow-remove-types --pretty index.js > lib/index.js && flow-remove-types --pretty json-store.js > lib/json-store.js && flow-remove-types --pretty get-config.js > lib/get-config.js",
+    "prepare": "yarn build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
