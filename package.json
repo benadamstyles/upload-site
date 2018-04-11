@@ -37,13 +37,13 @@
   },
   "homepage": "https://github.com/Leeds-eBooks/upload-site#readme",
   "devDependencies": {
-    "esm": "^3.0.17",
     "flow-bin": "^0.69",
     "flow-remove-types": "^1.2.3",
     "flow-typed": "^2.2.3",
     "release-it": "^7.3.0"
   },
   "dependencies": {
+    "esm": "^3.0.17",
     "hash-files": "^1.1.1",
     "jsftp": "^2.1.2",
     "jsonfile": "^4.0.0",
