@@ -11,11 +11,16 @@ import Log from 'log-color-optionaldate'
 import Progress from 'progress'
 import {maybe} from 'maybes'
 import hashOrig from 'hash-files'
+import minimist from 'minimist'
 
 import getConfig, {type LocalRoot, type RemoteRoot} from './get-config'
 import Store from './json-store'
 
-const loglevel = process.argv[2] === '--debug' ? 'debug' : 'info'
+const args: {debug?: boolean, dry?: boolean} = minimist(process.argv.slice(2), {
+  boolean: true,
+})
+
+const loglevel = args.debug === true ? 'debug' : 'info'
 const log = new Log({level: loglevel, color: true, date: false})
 
 type FTP = {
@@ -124,7 +129,10 @@ const ftpProcessLocation = async (
 
   if (!await matches(hashStore, localRoot, path, files)) {
     for (const file of files) {
-      await ftpPut(ftp, localRoot, path, file)
+      log.debug(`Uploading ${file}`)
+      if (args.dry !== true) {
+        await ftpPut(ftp, localRoot, path, file)
+      }
       progress.tick()
     }
   } else {
