@@ -15,6 +15,6 @@ type Config = $ReadOnly<{
 }>
 
 export default async (): Promise<Config> => {
-  const config = await conf('deploy')
+  const config = await conf('upload-site')
   return {...config, projectRoot: path.dirname(conf.filepath(config))}
 }

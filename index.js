@@ -157,16 +157,15 @@ void (async () => {
     const progress = getProgress([].concat(...data.values()).length)
 
     for (const [path, files] of data) {
-      console.log(path, files)
-      // await ftpProcessLocation(
-      //   hashStore,
-      //   ftp,
-      //   localRoot,
-      //   remoteRoot,
-      //   path,
-      //   files,
-      //   progress
-      // )
+      await ftpProcessLocation(
+        hashStore,
+        ftp,
+        localRoot,
+        remoteRoot,
+        path,
+        files,
+        progress
+      )
     }
 
     await hashStore.close()
